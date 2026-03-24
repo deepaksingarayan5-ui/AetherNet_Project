@@ -4,6 +4,43 @@ from protocol import encode_packet
 from brain import AetherBrain
 from charts import get_3d_vector_chart, get_channel_chart
 
+def aether_login_system():
+    """Initializes the secure gateway for Aether-Net."""
+    if "authenticated" not in st.session_state:
+        st.session_state["authenticated"] = False
+
+    if not st.session_state["authenticated"]:
+        st.markdown("<h1 style='text-align: center;'>AETHER-NET MISSION CONTROL</h1>", unsafe_allow_html=True)
+        st.warning("Hardware Status: Locked. Please authenticate to access 512GB SSD Telemetry.")
+        
+        # Security Credentials
+        user_input = st.text_input("User ID", placeholder="Enter ID")
+        pass_input = st.text_input("Security Key", type="password", placeholder="Enter Passcode")
+        
+        if st.button("Initialize Kernel"):
+            # Credentials matching your requirement
+            if user_input == "nerd" and pass_input == "arise":
+                st.session_state["authenticated"] = True
+                st.success("Access Granted. Synchronizing with DSN Node...")
+                import time
+                time.sleep(1)
+                st.rerun()
+            else:
+                st.error("Invalid Credentials. Access Denied.")
+        return False
+    return True
+
+# --- GLOBAL SECURITY TRIGGER ---
+if not aether_login_system():
+    st.stop()
+
+
+
+
+
+
+
+
 st.set_page_config(page_title="Aether-Net Dashboard", layout="wide", page_icon="🛰️")
 
 if 'brain' not in st.session_state:
