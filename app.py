@@ -36,11 +36,6 @@ if not aether_login_system():
 
 
 
-
-
-
-
-
 st.set_page_config(page_title="Aether-Net Dashboard", layout="wide", page_icon="🛰️")
 
 if 'brain' not in st.session_state:
